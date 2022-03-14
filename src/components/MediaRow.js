@@ -1,26 +1,25 @@
 import PropTypes from 'prop-types';
 
-const MediaRow = (props) => {
+const MediaRow = ({file}) => {
+  console.log(file);
   return (
     <tr>
       <td>
-        <img src="https://placekitten.com/180/100" alt="kissa" />
+        <img src={file.thumbnails.w160} alt="kissa" />
       </td>
       <td>
-        <h4>Title</h4>
-        <p>
-          Functions can be nested. Nested functions have access to variables
-          that were declared in the outer function. You can use nested functions
-          to organize the code in a function that’s long or complex.
-        </p>
+        <h4>{file.title}</h4>
+        <p>{file.description}</p>
       </td>
       <td>
-        <a href="https://metropolia.fi">View</a>
+        <a href={file.filename}>View</a>
       </td>
     </tr>
   );
 };
 
-MediaRow.propTypes = {};
+MediaRow.propTypes = {
+  file: PropTypes.object.isRequired,
+};
 
 export default MediaRow;
