@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const MediaRow = ({file}) => {
-  console.log(file);
+  console.log('MediaRow');
   return (
     <tr>
       <td>
@@ -19,7 +19,7 @@ const MediaRow = ({file}) => {
 };
 
 MediaRow.propTypes = {
-  file: PropTypes.object.isRequired,
+  file: PropTypes.object,
 };
 
 export default MediaRow;
