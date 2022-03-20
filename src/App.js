@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import './App.css';
 import React from 'react';
 import {MediaTable} from './components/MediaTable';
