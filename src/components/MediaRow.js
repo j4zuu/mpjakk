@@ -21,4 +21,4 @@ MediaRow.propTypes = {
   file: PropTypes.object,
 };
 
-export default MediaRow;
+export {MediaRow};

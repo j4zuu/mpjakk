@@ -1,5 +1,5 @@
 import React from 'react';
-import MediaRow from './MediaRow';
+import {MediaRow} from './MediaRow';
 import PropTypes from 'prop-types';
 
 const MediaTable = ({mediaArray}) => {

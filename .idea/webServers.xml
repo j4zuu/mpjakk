@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e106f186-61f4-4301-a58b-8168b794182e" name="shell" url="http://users.metropolia.fi/~jasuho/">
+        <fileTransfer rootFolder="/home1-1/j/jasuho/public_html" accessType="SFTP" host="shell.metropolia.fi" port="22" sshConfigId="fcc5ad15-1047-4993-aa02-fdf1547bf2cd" sshConfig="jasuho@shell.metropolia.fi:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
