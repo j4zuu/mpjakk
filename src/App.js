@@ -7,7 +7,8 @@ import Single from './views/Single';
 
 const App = () => {
   return (
-    <Router>
+    // eslint-disable-next-line no-undef
+    <Router basename={process.env.PUBLIC_URL}>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
