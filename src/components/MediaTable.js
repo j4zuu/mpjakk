@@ -1,24 +1,22 @@
+// import PropTypes from 'prop-types';
+import {useMedia} from '../hooks/ApiHooks';
+import MediaRow from './MediaRow';
 import React from 'react';
-import {MediaRow} from './MediaRow';
-import PropTypes from 'prop-types';
 
-const MediaTable = ({mediaArray}) => {
-  console.log(MediaRow);
+const MediaTable = () => {
+  const {mediaArray} = useMedia();
+  console.log(mediaArray);
   return (
     <table>
       <tbody>
-        {
-          mediaArray.map((item, index) => {
-            return <MediaRow file={item} key={index}/>;
-          })
-        }
+      {mediaArray.map((item, index) => {
+        return <MediaRow key={index} file={item} />;
+      })}
       </tbody>
     </table>
   );
 };
 
-MediaTable.propTypes = {
-  mediaArray: PropTypes.array.isRequired,
-};
+MediaTable.propTypes = {};
 
-export {MediaTable};
+export default MediaTable;
