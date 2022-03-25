@@ -11,9 +11,14 @@ const LoginForm = (props) => {
 
   const {postLogin} = useLogin();
 
-  const doLogin = () => {
+  const doLogin = async () => {
     console.log('doLogin');
-    postLogin(inputs);
+    try {
+      const userData = await postLogin(inputs);
+      console.log(userData);
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   const {inputs, handleInputChange, handleSubmit} = useForm(doLogin, alkuarvot);
