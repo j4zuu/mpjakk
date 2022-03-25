@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import PropTypes from 'prop-types';
+import {useUser} from '../hooks/ApiHooks';
 import useForm from '../hooks/FormHooks';
 
 const RegisterForm = (props) => {
@@ -10,15 +11,21 @@ const RegisterForm = (props) => {
     full_name: '',
   };
 
+  const {postUser} = useUser();
+
   const doRegister = () => {
     console.log('doRegister');
+    postUser(inputs);
   };
 
-  const {inputs, handleInputChange} = useForm(doRegister, alkuarvot);
+  const {inputs, handleInputChange, handleSubmit} = useForm(
+    doRegister,
+    alkuarvot
+  );
   console.log(inputs);
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         placeholder="username"
         name="username"
