@@ -1,19 +1,27 @@
+import {useEffect, useState} from 'react';
 import {useUser} from '../hooks/ApiHooks';
 
 const Profile = () => {
+  const [user, setUser] = useState({});
   const {getUser} = useUser();
   const fetchUser = async () => {
-    return await getUser(localStorage.getItem('token'));
+    const userData = await getUser(localStorage.getItem('token'));
+    setUser(userData);
   };
 
-  const user = fetchUser();
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
   console.log(user);
   return (
     <>
       <h1>Profile</h1>
-      <li>
-        <ul>{user.username}</ul>
-      </li>
+      <ul>
+        <li>{user.username}</li>
+        <li>{user.email}</li>
+        <li>{user.full_name}</li>
+      </ul>
     </>
   );
 };
