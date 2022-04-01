@@ -12,6 +12,7 @@ const RegisterForm = (props) => {
   const alkuarvot = {
     username: '',
     password: '',
+    confirm: '',
     email: '',
     full_name: '',
   };
@@ -19,6 +20,7 @@ const RegisterForm = (props) => {
   const validators = {
     username: ['required', 'minStringLength: 3', 'isAvailable'],
     password: ['required', 'minStringLength: 5'],
+    confirm: ['required', 'isPasswordMatch'],
     email: ['required', 'isEmail'],
   };
 
@@ -29,6 +31,7 @@ const RegisterForm = (props) => {
       'usename not available',
     ],
     password: ['required field', 'minimum 5 characters'],
+    confirm: ['required field', 'passwords do not match'],
     email: ['required field', 'not email address'],
   };
 
@@ -39,6 +42,7 @@ const RegisterForm = (props) => {
     try {
       const checkUser = getUsername(inputs.username);
       if (checkUser) {
+        delete inputs.confirm;
         const userData = await postUser(inputs);
         console.log(userData);
       }
@@ -60,7 +64,22 @@ const RegisterForm = (props) => {
         return true;
       }
     });
-  }, []);
+
+    ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
+      /*
+      if (value !== inputs.password) {
+        return false;
+      }
+      return true;
+      */
+      console.log('validator', value, inputs.password);
+      return value === inputs.password ? true : false;
+    });
+
+    return () => {
+      ValidatorForm.removeValidationRule('isAvailable');
+    };
+  }, [inputs]);
 
   return (
     <Grid container>
@@ -92,6 +111,17 @@ const RegisterForm = (props) => {
             value={inputs.password}
             validators={validators.password}
             errorMessages={errorMessages.password}
+          />
+          <TextValidator
+            fullWidth
+            label="re-type password"
+            placeholder="re-type password"
+            name="confirm"
+            type="confirm"
+            onChange={handleInputChange}
+            value={inputs.confirm}
+            validators={validators.confirm}
+            errorMessages={errorMessages.confirm}
           />
           <TextValidator
             fullWidth
