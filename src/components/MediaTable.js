@@ -1,7 +1,6 @@
 // import PropTypes from 'prop-types';
 import {useMedia} from '../hooks/ApiHooks';
 import MediaRow from './MediaRow';
-import React from 'react';
 
 const MediaTable = () => {
   const {mediaArray} = useMedia();
@@ -9,9 +8,9 @@ const MediaTable = () => {
   return (
     <table>
       <tbody>
-      {mediaArray.map((item, index) => {
-        return <MediaRow key={index} file={item} />;
-      })}
+        {mediaArray.map((item, index) => {
+          return <MediaRow key={index} file={item} />;
+        })}
       </tbody>
     </table>
   );

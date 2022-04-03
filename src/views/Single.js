@@ -1,16 +1,17 @@
+import {useLocation} from 'react-router-dom';
 import {mediaUrl} from '../utils/variables';
-import React from 'react';
-import {Link, useLocation} from 'react-router-dom';
 
 const Single = () => {
-  const file = {}; // TODO in the next task: single media from props.location.state
+  const location = useLocation();
+  console.log(location);
+  // eslint-disable-next-line max-len
+  const file = location.state.file; // TODO in the next task: single media from props.location.state
 
   return (
-    <React.Fragment>
+    <>
       <h1>{file.title}</h1>
-      <img src={mediaUrl + file.filename} alt={file.title}/>
-      <Link to={{pathname: "/example", state: fileObject}} />
-    </React.Fragment>
+      <img src={mediaUrl + file.filename} alt={file.title} />
+    </>
   );
 };
 

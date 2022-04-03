@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
-import {mediaUrl} from '../utils/variables';
-import React from 'react';
 import {Link} from 'react-router-dom';
+import {mediaUrl} from '../utils/variables';
 
 const MediaRow = ({file}) => {
   return (
@@ -14,7 +13,9 @@ const MediaRow = ({file}) => {
         <p>{file.description}</p>
       </td>
       <td>
-        <Link to={'./single'} state={{file}}>View</Link>
+        <Link to={'/single'} state={{file}}>
+          View
+        </Link>
       </td>
     </tr>
   );
