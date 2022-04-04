@@ -23,9 +23,9 @@ const useMedia = () => {
     try {
       const media = await fetchJson(baseUrl + 'media');
       const allFiles = await Promise.all(
-          media.map(async (file) => {
-            return await fetchJson(`${baseUrl}media/${file.file_id}`);
-          }),
+        media.map(async (file) => {
+          return await fetchJson(`${baseUrl}media/${file.file_id}`);
+        })
       );
       setMediaArray(allFiles);
     } catch (err) {
@@ -40,4 +40,59 @@ const useMedia = () => {
   return {mediaArray};
 };
 
-export {useMedia};
+const useUser = () => {
+  const getUser = async (token) => {
+    const fetchOptions = {
+      headers: {
+        'x-access-token': token,
+      },
+    };
+    return await fetchJson(baseUrl + 'users/user', fetchOptions);
+  };
+
+  const getUsername = async (username) => {
+    const checkUser = await fetchJson(baseUrl + 'users/username/' + username);
+    return checkUser.available;
+  };
+
+  const postUser = async (inputs) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+    return await fetchJson(baseUrl + 'users', fetchOptions);
+  };
+
+  return {getUser, postUser, getUsername};
+};
+
+const useLogin = () => {
+  const postLogin = async (inputs) => {
+    const fetchOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    };
+    return await fetchJson(baseUrl + 'login', fetchOptions);
+  };
+  return {postLogin};
+};
+
+const useTag = () => {
+  const getTag = async (tag) => {
+    const tagResult = await fetchJson(baseUrl + 'tags/' + tag);
+    if (tagResult.length > 0) {
+      return tagResult;
+    } else {
+      throw new Error('No results');
+    }
+  };
+  return {getTag};
+};
+
+export {useMedia, useLogin, useUser, useTag};
