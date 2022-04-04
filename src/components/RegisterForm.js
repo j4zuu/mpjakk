@@ -24,8 +24,8 @@ const RegisterForm = (props) => {
   };
 
   const {inputs, handleInputChange, handleSubmit} = useForm(
-    doRegister,
-    alkuarvot
+      doRegister,
+      alkuarvot,
   );
   console.log(inputs);
 
