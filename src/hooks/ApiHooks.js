@@ -23,9 +23,9 @@ const useMedia = () => {
     try {
       const media = await fetchJson(baseUrl + 'media');
       const allFiles = await Promise.all(
-        media.map(async (file) => {
-          return await fetchJson(`${baseUrl}media/${file.file_id}`);
-        })
+          media.map(async (file) => {
+            return await fetchJson(`${baseUrl}media/${file.file_id}`);
+          }),
       );
       setMediaArray(allFiles);
     } catch (err) {
